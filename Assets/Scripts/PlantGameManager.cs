@@ -19,6 +19,7 @@ public class PlantGameManager : MonoBehaviour
     public Slider CO2Slider;
     public Slider H2OSlider;
     public Text photosynthesisText;
+    public float photosynthesisRate;
 
 
 
@@ -37,42 +38,41 @@ public class PlantGameManager : MonoBehaviour
             timer = 0f;
             if (isItDay)
             {
-                DayNightSwitch("night");
+                NightStart();
             }
             else
             {
-                DayNightSwitch("day");
+                DayStart();
             }
         }
-        /*        if (stimulus != response)
-                {
-                    health -= Time.deltaTime * healthLossPerSecond;
-                }*/
 
+        if (isItDay)
+        {
+            DayUpdate();
+        }
     }
 
-    //change from night to day/day to night
-    //change background color
-    //change stimulus
-    public void DayNightSwitch(string dayNight)
+    //change from day to night, change background color, update photosynthesis text
+    public void NightStart()
     {
-        if(dayNight == "night")
-        {
-            background.GetComponent<SpriteRenderer>().color = new Color32(73, 73, 73, 255);
-            isItDay = false;
-            photosynthesisText.text = "No Photosynthesis";
-        }
+        background.GetComponent<SpriteRenderer>().color = new Color32(73, 73, 73, 255);
+        isItDay = false;
+        photosynthesisText.text = "No Photosynthesis";      
+    }
 
-        else if(dayNight == "day")
+     public void DayStart()
+    {
+        background.GetComponent<SpriteRenderer>().color = Color.white;
+        isItDay = true;
+    }
+
+      public void DayUpdate()
+    {
+        if (CO2Slider.value != 0 && H2OSlider.value != 0)
         {
-            background.GetComponent<SpriteRenderer>().color = Color.white;
-            isItDay = true;
-            while (CO2Slider.value != 0 && H2OSlider.value != 0)
-            {
-                photosynthesisText.text = "Photosynthesis occuring!";
-                CO2Slider.value = CO2Slider.value - 1f;
-                H2OSlider.value = H2OSlider.value - 1f;
-            }
+            photosynthesisText.text = "Photosynthesis occuring!";
+            CO2Slider.value -= photosynthesisRate * Time.deltaTime;
+            H2OSlider.value -= photosynthesisRate * Time.deltaTime;
         }
     }
 
