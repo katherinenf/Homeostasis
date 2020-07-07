@@ -35,21 +35,18 @@ public class BackgroundSpawner : MonoBehaviour
                 GameObject newThing = Instantiate(defaultPrefab, new Vector3(spawnNextX + offset, transform.position.y, transform.position.z), transform.rotation);
                 newThing.transform.SetSiblingIndex(0);
                 Sicken();
-                //GM.stimulusText.text = null;
             }
             if (type == 1)
             {
                 GameObject newThing = Instantiate(hotPrefab, new Vector3(spawnNextX + offset, transform.position.y, transform.position.z), transform.rotation);
                 newThing.transform.SetSiblingIndex(0);
                 currentType = "hot";
-                //GM.stimulusText.text = "hot";
             }
              if(type == 2)
             {
                 GameObject newThing = Instantiate(coldPrefab, new Vector3(spawnNextX + offset, transform.position.y, transform.position.z), transform.rotation);
                 newThing.transform.SetSiblingIndex(0);
                 currentType = "cold";
-                //GM.stimulusText.text = "cold";
             }
     }
 
@@ -60,7 +57,6 @@ public class BackgroundSpawner : MonoBehaviour
         if (sick == 0)
         {
             currentType = "sick";
-
         }
         else
         {

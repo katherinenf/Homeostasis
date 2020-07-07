@@ -54,18 +54,24 @@ public class Player : MonoBehaviour
         if (type == "hot")
         {
             sr.color = Color.red;
+            GM.stimulusText.text = "Oh no! You're overheating!";
         }
         if (type == "default")
         {
             sr.color = Color.white;
+            GM.stimulusText.text = null;
+
         }
         if ( type == "sick")
         {
             sr.color = Color.green;
+            GM.stimulusText.text = "Oh no! You're not feeling so good!";
         }
         else if (type == "cold")
         {
             sr.color = Color.cyan;
+            GM.stimulusText.text = "Oh no! You're getting too cold!";
+
         }
     }
 

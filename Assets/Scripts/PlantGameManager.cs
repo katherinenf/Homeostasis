@@ -20,6 +20,9 @@ public class PlantGameManager : MonoBehaviour
     public float photosynthesisRate;
     public bool stomataOpen;
     public Text healthText;
+    public Image stomataState;
+    public Sprite openSprite;
+    public Sprite closedSprite;
 
 
 
@@ -27,7 +30,7 @@ public class PlantGameManager : MonoBehaviour
     void Start()
     {
         photosynthesisText.text = "No Photosynthesis. Are you missing water, sunlight, or CO2?";
-        responseText.text = "Stomata Open. You're letting in CO2 but losing H2O!";
+        responseText.text = "Stomata Open";
     }
 
     // Update is called once per frame
@@ -59,7 +62,7 @@ public class PlantGameManager : MonoBehaviour
             {
                 H2OSlider.value -= Time.deltaTime;
             }
-            CO2Slider.value += Time.deltaTime;
+            CO2Slider.value += 2f * Time.deltaTime;
         }
         else
         {
@@ -67,7 +70,7 @@ public class PlantGameManager : MonoBehaviour
             {
                 CO2Slider.value -= Time.deltaTime;
             }*/
-            H2OSlider.value += 2 * Time.deltaTime;
+            H2OSlider.value += 2f * Time.deltaTime;
         }
         if (photosynthesis)
         {
@@ -85,7 +88,7 @@ public class PlantGameManager : MonoBehaviour
     {
         background.GetComponent<SpriteRenderer>().color = new Color32(73, 73, 73, 255);
         isItDay = false;
-        photosynthesisText.text = "No Photosynthesis. Are you missing water, sunlight, or CO2?";
+        photosynthesisText.text = "No sunlight meants no photosynthesis!";
         photosynthesisText.color = Color.white;
     }
 
@@ -116,14 +119,17 @@ public class PlantGameManager : MonoBehaviour
     //alter CO2 and H2O sliders to reflect whether CO2 and H2O are being gained or lost
     public void StomataOpen()
     {
-        responseText.text = "Stomata Open. You're letting in CO2 but losing H2O!";
+        responseText.text = "Stomata Open";
         stomataOpen = true;
+        stomataState.sprite = openSprite;
     }
 
     public void StomataClosed()
     {
-        responseText.text = "Stomata Closed You're building up H2O but not getting any CO2!";
+        responseText.text = "Stomata Closed";
         stomataOpen = false;
+        stomataState.sprite = closedSprite;
+
     }
 
 }
