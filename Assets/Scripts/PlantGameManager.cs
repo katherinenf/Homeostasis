@@ -14,8 +14,8 @@ public class PlantGameManager : MonoBehaviour
     public bool isItDay;
     public int healthChangePerSecond;
     public Text responseText;
-    public Slider CO2Slider;
-    public Slider H2OSlider;
+    //public Slider CO2Slider;
+    //public Slider H2OSlider;
     public Text photosynthesisText;
     public float photosynthesisRate;
     public bool stomataOpen;
@@ -23,6 +23,9 @@ public class PlantGameManager : MonoBehaviour
     public Image stomataState;
     public Sprite openSprite;
     public Sprite closedSprite;
+    public Image CO2Meter;
+    public Image H2OMeter;
+    public Image PhotosynthesisMeter;
 
 
 
@@ -53,16 +56,17 @@ public class PlantGameManager : MonoBehaviour
 
         if (isItDay)
         {
-            DayUpdate();
+            //DayUpdate();
         }
 
         if (stomataOpen)
         {
-            if (H2OSlider.value != 0)
+
+           /* if (H2OSlider.value != 0)
             {
                 H2OSlider.value -= Time.deltaTime;
             }
-            CO2Slider.value += 2f * Time.deltaTime;
+            CO2Slider.value += 2f * Time.deltaTime;*/
         }
         else
         {
@@ -70,7 +74,7 @@ public class PlantGameManager : MonoBehaviour
             {
                 CO2Slider.value -= Time.deltaTime;
             }*/
-            H2OSlider.value += 2f * Time.deltaTime;
+            //H2OSlider.value += 2f * Time.deltaTime;
         }
         if (photosynthesis)
         {
@@ -98,21 +102,21 @@ public class PlantGameManager : MonoBehaviour
         isItDay = true;
     }
 
-      public void DayUpdate()
-    {
-        if (CO2Slider.value != 0 && H2OSlider.value != 0)
+    /*      public void DayUpdate()
         {
-            photosynthesisText.text = "Photosynthesis occuring! Using up that H2O and CO2 to make food!";
-            photosynthesisText.color = Color.yellow;
-            CO2Slider.value -= photosynthesisRate * Time.deltaTime;
-            H2OSlider.value -= photosynthesisRate * Time.deltaTime;
-        }
-        else
-        {
-            photosynthesisText.text = "No Photosynthesis. Are you missing water, sunlight, or CO2?";
-            photosynthesisText.color = Color.white;
-        }
-    }
+            if (CO2Slider.value != 0 && H2OSlider.value != 0)
+            {
+                photosynthesisText.text = "Photosynthesis occuring! Using up that H2O and CO2 to make food!";
+                photosynthesisText.color = Color.yellow;
+                CO2Slider.value -= photosynthesisRate * Time.deltaTime;
+                H2OSlider.value -= photosynthesisRate * Time.deltaTime;
+            }
+            else
+            {
+                photosynthesisText.text = "No Photosynthesis. Are you missing water, sunlight, or CO2?";
+                photosynthesisText.color = Color.white;
+            }
+        }*/
 
     //change response to match stimulus
     //change response text to display condition of stomata
@@ -122,6 +126,20 @@ public class PlantGameManager : MonoBehaviour
         responseText.text = "Stomata Open";
         stomataOpen = true;
         stomataState.sprite = openSprite;
+        RectTransform H2OBar = H2OMeter.GetComponent<RectTransform>();
+        if (H2OBar.rect.height > 0)
+        {
+            if (isItDay)
+            {
+                H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height - 20);
+            }
+            H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height - 10);
+        }
+        RectTransform CO2Bar = CO2Meter.GetComponent<RectTransform>();
+        if (CO2Bar.rect.height <= 100)
+        {
+            CO2Bar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, CO2Bar.rect.height + 10);
+        }
     }
 
     public void StomataClosed()
@@ -129,7 +147,20 @@ public class PlantGameManager : MonoBehaviour
         responseText.text = "Stomata Closed";
         stomataOpen = false;
         stomataState.sprite = closedSprite;
-
+        RectTransform H2OBar = H2OMeter.GetComponent<RectTransform>();
+        if(H2OBar.rect.height <= 100)
+        {
+            if (!isItDay)
+            {
+                H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height + 20);
+            }
+            H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height + 10);
+        }
+        RectTransform CO2Bar = CO2Meter.GetComponent<RectTransform>();
+        if (CO2Bar.rect.height > 0)
+        {
+            CO2Bar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, CO2Bar.rect.height - 10);
+        }
     }
 
 }
