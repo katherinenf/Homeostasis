@@ -12,17 +12,8 @@ public class PlantGameManager : MonoBehaviour
     public float timer;
     public float delayAmount;
     public bool isItDay;
-    public int healthChangePerSecond;
     public Text responseText;
-    //public Slider CO2Slider;
-    //public Slider H2OSlider;
     public Text photosynthesisText;
-    public float photosynthesisRate;
-    public bool stomataOpen;
-    public Text healthText;
-    public Image stomataState;
-    public Sprite openSprite;
-    public Sprite closedSprite;
     public Image CO2Meter;
     public Image H2OMeter;
     public Image PhotosynthesisMeter;
@@ -39,7 +30,6 @@ public class PlantGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "health: " + ((int)health).ToString();
         timer += Time.deltaTime;
         if (timer >= delayAmount)
         {
@@ -59,38 +49,22 @@ public class PlantGameManager : MonoBehaviour
             //DayUpdate();
         }
 
-        if (stomataOpen)
-        {
-
-           /* if (H2OSlider.value != 0)
-            {
-                H2OSlider.value -= Time.deltaTime;
-            }
-            CO2Slider.value += 2f * Time.deltaTime;*/
-        }
-        else
-        {
-/*            if (CO2Slider.value != 0)
-            {
-                CO2Slider.value -= Time.deltaTime;
-            }*/
-            //H2OSlider.value += 2f * Time.deltaTime;
-        }
-        if (photosynthesis)
+/*        if (photosynthesis)
         {
             health += Time.deltaTime * healthChangePerSecond;
         }
         if(isItDay && !photosynthesis)
         {
             health -= Time.deltaTime * healthChangePerSecond;
-        }
+        }*/
 
     }
 
     //change from day to night, change background color, update photosynthesis text
     public void NightStart()
     {
-        background.GetComponent<SpriteRenderer>().color = new Color32(73, 73, 73, 255);
+        background.GetComponent<SpriteRenderer>().color = new Color32(175, 175, 175, 255);
+
         isItDay = false;
         photosynthesisText.text = "No sunlight meants no photosynthesis!";
         photosynthesisText.color = Color.white;
@@ -124,15 +98,9 @@ public class PlantGameManager : MonoBehaviour
     public void StomataOpen()
     {
         responseText.text = "Stomata Open";
-        stomataOpen = true;
-        stomataState.sprite = openSprite;
         RectTransform H2OBar = H2OMeter.GetComponent<RectTransform>();
         if (H2OBar.rect.height > 0)
         {
-            if (isItDay)
-            {
-                H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height - 20);
-            }
             H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height - 10);
         }
         RectTransform CO2Bar = CO2Meter.GetComponent<RectTransform>();
@@ -145,8 +113,6 @@ public class PlantGameManager : MonoBehaviour
     public void StomataClosed()
     {
         responseText.text = "Stomata Closed";
-        stomataOpen = false;
-        stomataState.sprite = closedSprite;
         RectTransform H2OBar = H2OMeter.GetComponent<RectTransform>();
         if(H2OBar.rect.height <= 100)
         {
