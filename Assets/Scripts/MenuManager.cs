@@ -14,4 +14,9 @@ public class MenuManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("HumanGPScene");
     }
+
+    public void ToPlantMode()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("PlantGPScene");
+    }
 }

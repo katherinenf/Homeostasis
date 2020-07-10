@@ -16,6 +16,7 @@ public class Leaf : MonoBehaviour
     public bool photosynthesisHappening;
     bool stopDaLeaf = false;
     public bool youDead = false;
+    public Text EventText;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class Leaf : MonoBehaviour
         {
             youDead = true;
             leaf.color = Color.gray;
+            EventText.text = "your leaf has died :(";
             this.enabled = false;
             stopDaLeaf = true;  
         }
@@ -50,6 +52,7 @@ public class Leaf : MonoBehaviour
             leaf.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
             this.enabled = false;
             stopDaLeaf = true;
+            EventText.text = "Photosynthesis!";
         }
 
     }

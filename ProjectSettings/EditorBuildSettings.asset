@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HumanGPScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/PlantGPScene.unity
+    guid: 1417423448f640042891976c6bd7ff3f
   m_configObjects: {}

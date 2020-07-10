@@ -18,12 +18,13 @@ public class GameManager : MonoBehaviour
     public Text healthText;
     public int healthLossPerSecond;
     public Player player;
-    public Zombie zombie;
+    public Zombie zombiePrefab;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        //spawnZombie();
     }
 
     // Update is called once per frame
@@ -54,6 +55,34 @@ public class GameManager : MonoBehaviour
                 player.GetComponent<SpriteRenderer>().color = Color.white;
                 stimulusText.text = null;
             }
+            playerUpdate();
+
+        }
+    }
+
+    public void playerUpdate()
+    {
+        SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
+
+        if (stimulus == "hot" && response != "hot")
+        {
+            stimulusText.text = "Oh no! You're overheating!";
+            sr.color = Color.red;
+        }
+        if (stimulus == "cold" && response != "cold")
+        {
+            stimulusText.text = "Oh no! You're getting too cold!";
+            sr.color = Color.green;
+        }
+        if (stimulus == "sick" && response != "sick")
+        {
+            stimulusText.text = "Oh no! You're not feeling so good!";
+            sr.color = Color.cyan;
+        }
+        if(stimulus == "default")
+        {
+            player.GetComponent<SpriteRenderer>().color = Color.white;
+            stimulusText.text = null;
         }
     }
 
@@ -70,5 +99,15 @@ public class GameManager : MonoBehaviour
     public void SickClick()
     {
         response = "sick";
+    }
+    public void HeartClick()
+    {
+        stimulus = "hot";
+    }
+
+    public void spawnZombie()
+    {
+        Zombie zombie = Instantiate(zombiePrefab);
+        zombie.transform.position = new Vector3(-10, -1, 0);
     }
 }

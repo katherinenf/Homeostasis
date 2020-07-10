@@ -26,10 +26,10 @@ public class Fruit : MonoBehaviour
         }
     }
 
-    void OnClick()
+    public void OnClick()
     {
-        fruitImage.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
-
+        Vector2 fruitScale = fruitImage.GetComponent<RectTransform>().localScale;
+        fruitScale = new Vector2(fruitScale.x + 0.5f, fruitScale.y + 0.5f);
     }
 
 }

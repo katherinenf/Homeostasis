@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     public GameManager GM;
     public float timer;
     public float delayAmount;
+    public int health;
+    public Rigidbody2D rb;
+    public Vector2 jumpHeight;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,10 @@ public class Player : MonoBehaviour
             }
             gameObject.GetComponent<SpriteRenderer>().sprite = currentSprite;
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(jumpHeight, ForceMode2D.Impulse);
+        }
 
     }
 
@@ -43,36 +50,8 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         GM.stimulus = spawner.currentType;
-        ChangeColor(spawner.currentType);
     }
 
-    // set the color of the player sprite based on the stimulus
-    private void ChangeColor(string type)
-    {
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 
-        if (type == "hot")
-        {
-            sr.color = Color.red;
-            GM.stimulusText.text = "Oh no! You're overheating!";
-        }
-        if (type == "default")
-        {
-            sr.color = Color.white;
-            GM.stimulusText.text = null;
-
-        }
-        if ( type == "sick")
-        {
-            sr.color = Color.green;
-            GM.stimulusText.text = "Oh no! You're not feeling so good!";
-        }
-        else if (type == "cold")
-        {
-            sr.color = Color.cyan;
-            GM.stimulusText.text = "Oh no! You're getting too cold!";
-
-        }
-    }
 
 }
