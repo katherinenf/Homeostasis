@@ -36,13 +36,13 @@ public class Player : MonoBehaviour
             }
             gameObject.GetComponent<SpriteRenderer>().sprite = currentSprite;
         }
+
     }
 
    
     private void OnTriggerEnter2D(Collider2D collider)
     {
         GM.stimulus = spawner.currentType;
-        //GM.stimulusText.text = spawner.currentType;
         ChangeColor(spawner.currentType);
     }
 

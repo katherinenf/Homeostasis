@@ -10,8 +10,12 @@ public class Leaf : MonoBehaviour
     public bool isItHot;
     public Image CO2Meter;
     public Image H2OMeter;
-    public Image Open;
-    public Image Closed;
+    public Image open;
+    public Image closed;
+    public Image leaf;
+    public bool photosynthesisHappening;
+    bool stopDaLeaf = false;
+    public bool youDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,22 +26,50 @@ public class Leaf : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RectTransform H2OBar = H2OMeter.GetComponent<RectTransform>();
+        RectTransform CO2Bar = CO2Meter.GetComponent<RectTransform>();
         MeterControl();
+        if (open.enabled == true)
+        {
+            leaf = open;
+        }
+        else
+        {
+            leaf = closed;
+        }
+        if (H2OBar.rect.height <= 0 || CO2Bar.rect.height <= 0)
+        {
+            youDead = true;
+            leaf.color = Color.gray;
+            this.enabled = false;
+            stopDaLeaf = true;  
+        }
+        if (H2OBar.rect.height >= 50 && CO2Bar.rect.height >= 50)
+        {
+            photosynthesisHappening = true;
+            leaf.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            this.enabled = false;
+            stopDaLeaf = true;
+        }
+
     }
 
     public void OnClick()
     {
-        if (stomataOpen)
+        if (!stopDaLeaf)
         {
-            stomataOpen = false;
-            Open.enabled = false;
-            Closed.enabled = true;
-        }
-        else
-        {
-            stomataOpen = true;
-            Closed.enabled = false;
-            Open.enabled = true;
+            if (stomataOpen)
+            {
+                stomataOpen = false;
+                open.enabled = false;
+                closed.enabled = true;
+            }
+            else
+            {
+                stomataOpen = true;
+                closed.enabled = false;
+                open.enabled = true;
+            }
         }
     }
 
@@ -47,26 +79,25 @@ public class Leaf : MonoBehaviour
         RectTransform CO2Bar = CO2Meter.GetComponent<RectTransform>();
         if (stomataOpen)
         {
-            if (H2OBar.rect.height <= 100)
+            if (H2OBar.rect.height >= 0)
             {
-                H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height + (10 * Time.deltaTime));
+                H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height - (5 * Time.deltaTime));
             }
-            //H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height + 10);
-            if (CO2Bar.rect.height > 0)
+            if (CO2Bar.rect.height <= 100)
             {
-                CO2Bar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, CO2Bar.rect.height - (10 * Time.deltaTime));
+                CO2Bar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, CO2Bar.rect.height + (10 * Time.deltaTime));
             }
         }
 
         else
         {
-            if (H2OBar.rect.height > 0)
+            if (H2OBar.rect.height <= 100)
             {
-                H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height - (10 * Time.deltaTime));
+                H2OBar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, H2OBar.rect.height + (10 * Time.deltaTime));
             }
-            if (CO2Bar.rect.height <= 100)
+            if (CO2Bar.rect.height >= 0)
             {
-                CO2Bar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, CO2Bar.rect.height + (10 * Time.deltaTime));
+                CO2Bar.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, CO2Bar.rect.height - (5 * Time.deltaTime));
             }
         }
     }

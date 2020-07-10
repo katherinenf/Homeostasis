@@ -357,8 +357,10 @@ MonoBehaviour:
   isItHot: 0
   CO2Meter: {fileID: 2914400495983323383}
   H2OMeter: {fileID: 2914400496167883302}
-  Open: {fileID: 9194044579841790976}
-  Closed: {fileID: 5367194209726282226}
+  open: {fileID: 9194044579841790976}
+  closed: {fileID: 5367194209726282226}
+  leaf: {fileID: 9194044579841790976}
+  photosynthesisHappening: 0
 --- !u!1001 &389917530328991152
 PrefabInstance:
   m_ObjectHideFlags: 0

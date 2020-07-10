@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public Text healthText;
     public int healthLossPerSecond;
     public Player player;
+    public Zombie zombie;
     
 
     // Start is called before the first frame update
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
             if(stimulus == response)
             {
                 player.GetComponent<SpriteRenderer>().color = Color.white;
+                stimulusText.text = null;
             }
         }
     }
