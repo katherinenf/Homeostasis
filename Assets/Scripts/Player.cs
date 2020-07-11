@@ -14,11 +14,15 @@ public class Player : MonoBehaviour
     public int health;
     public Rigidbody2D rb;
     public Vector2 jumpHeight;
+    float velocityY;
+    public float jumpImpulse;
+    public float gravity;
+    public float floorY;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        floorY = transform.position.y;
     }
 
     // Update is called once per frame
@@ -39,14 +43,20 @@ public class Player : MonoBehaviour
             }
             gameObject.GetComponent<SpriteRenderer>().sprite = currentSprite;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y == floorY)
         {
-            rb.AddForce(jumpHeight, ForceMode2D.Impulse);
+            velocityY = jumpImpulse;
         }
-
+        velocityY += (gravity * Time.deltaTime);
+        transform.position += new Vector3(0, velocityY * Time.deltaTime, 0);
+        if(transform.position.y <= floorY)
+        {
+            velocityY = 0;
+            transform.position = new Vector2(transform.position.x, floorY);
+        }       
     }
 
-   
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         GM.stimulus = spawner.currentType;

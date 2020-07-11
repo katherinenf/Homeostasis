@@ -9,6 +9,7 @@ public class Fruit : MonoBehaviour
     public float timer;
     public float delayAmount;
     public Image fruitImage;
+    public bool fruitCanGrow;
 
     // Start is called before the first frame update
     void Start()
@@ -22,14 +23,18 @@ public class Fruit : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= delayAmount)
         {
-            //fruit can grow bigger
+            fruitCanGrow = false;
         }
     }
 
     public void OnClick()
     {
-        Vector2 fruitScale = fruitImage.GetComponent<RectTransform>().localScale;
-        fruitScale = new Vector2(fruitScale.x + 0.5f, fruitScale.y + 0.5f);
+        if (fruitCanGrow)
+        {
+            float fruitX = fruitImage.GetComponent<RectTransform>().localScale.x;
+            float fruitY = fruitImage.GetComponent<RectTransform>().localScale.y;
+            fruitImage.GetComponent<RectTransform>().localScale = new Vector3(fruitX + 0.1f, fruitY + 0.1f, 1);
+        }
     }
 
 }

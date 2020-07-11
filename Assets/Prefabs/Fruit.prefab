@@ -267,5 +267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  delayAmount: 0
+  delayAmount: 3
   fruitImage: {fileID: 6435298713708370222}
+  fruitCanGrow: 1

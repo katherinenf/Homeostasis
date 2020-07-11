@@ -99,5 +99,6 @@ MonoBehaviour:
   coldPrefab: {fileID: 6091095902426651063, guid: a534cdac29a642e48ad750bf17a72b1d,
     type: 3}
   currentType: 
-  types: []
   GM: {fileID: 0}
+  zombiePrefab: {fileID: 296561952363532314, guid: 2dda048fb11d0b94a8debae702ca7f5f,
+    type: 3}

@@ -9,10 +9,10 @@ public class BackgroundSpawner : MonoBehaviour
     public GameObject hotPrefab;
     public GameObject coldPrefab;
     public string currentType;
-    //public  string type;
     public GameManager GM;
-
-
+    public Zombie zombiePrefab;
+    public float timer;
+    public float zombieSpawnTime;
 
     // The next x position that an background will spawn at
     float spawnNextX;
@@ -25,6 +25,7 @@ public class BackgroundSpawner : MonoBehaviour
     {
         spawnNextX = transform.position.x;
         currentType = "default";
+        
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -48,6 +49,11 @@ public class BackgroundSpawner : MonoBehaviour
                 newThing.transform.SetSiblingIndex(0);
                 currentType = "cold";
             }
+        timer += Time.deltaTime;
+        if(timer <= zombieSpawnTime)
+        {
+            spawnZombie();
+        }
     }
 
     //has a chance to set the stimulus to "sick" if on a default background
@@ -63,6 +69,12 @@ public class BackgroundSpawner : MonoBehaviour
             currentType = "default";
         }
         Debug.Log(currentType);
+    }
+
+    public void spawnZombie()
+    {
+        Zombie zombie = Instantiate(zombiePrefab);
+        zombie.transform.position = new Vector3(-10, -1, 0);
     }
 
 

@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public Text healthText;
     public int healthLossPerSecond;
     public Player player;
-    public Zombie zombiePrefab;
     
 
     // Start is called before the first frame update
@@ -56,7 +55,6 @@ public class GameManager : MonoBehaviour
                 stimulusText.text = null;
             }
             playerUpdate();
-
         }
     }
 
@@ -105,9 +103,5 @@ public class GameManager : MonoBehaviour
         stimulus = "hot";
     }
 
-    public void spawnZombie()
-    {
-        Zombie zombie = Instantiate(zombiePrefab);
-        zombie.transform.position = new Vector3(-10, -1, 0);
-    }
+
 }

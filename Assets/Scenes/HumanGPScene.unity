@@ -627,7 +627,7 @@ RectTransform:
   - {fileID: 375649808}
   - {fileID: 1337594001}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1405,8 +1405,6 @@ MonoBehaviour:
   healthText: {fileID: 375649806}
   healthLossPerSecond: 1
   player: {fileID: 1185290548}
-  zombiePrefab: {fileID: 296561952363532314, guid: 2dda048fb11d0b94a8debae702ca7f5f,
-    type: 3}
 --- !u!4 &1485300156
 Transform:
   m_ObjectHideFlags: 0
@@ -1520,10 +1518,30 @@ PrefabInstance:
       propertyPath: jumpHeight.y
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2365716290696561383, guid: 77a122202d976ea42b35de981554bb8b,
+        type: 3}
+      propertyPath: gravity
+      value: -9.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365716290696561383, guid: 77a122202d976ea42b35de981554bb8b,
+        type: 3}
+      propertyPath: velocityY
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365716290696561383, guid: 77a122202d976ea42b35de981554bb8b,
+        type: 3}
+      propertyPath: jumpImpulse
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7875711143113242962, guid: 77a122202d976ea42b35de981554bb8b,
         type: 3}
       propertyPath: m_BodyType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875711143113242962, guid: 77a122202d976ea42b35de981554bb8b,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8992326236443735196, guid: 77a122202d976ea42b35de981554bb8b,
         type: 3}
@@ -1563,7 +1581,7 @@ PrefabInstance:
     - target: {fileID: 8992326236443735196, guid: 77a122202d976ea42b35de981554bb8b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8992326236443735196, guid: 77a122202d976ea42b35de981554bb8b,
         type: 3}
@@ -1661,7 +1679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1970026242
 GameObject:
@@ -1940,7 +1958,7 @@ PrefabInstance:
     - target: {fileID: 5422369192506495823, guid: f41c8c26f1a1a9848a0696e3f66912c3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5422369192506495823, guid: f41c8c26f1a1a9848a0696e3f66912c3,
         type: 3}
@@ -1962,6 +1980,11 @@ PrefabInstance:
       propertyPath: GM
       value: 
       objectReference: {fileID: 1485300155}
+    - target: {fileID: 5422369192506495920, guid: f41c8c26f1a1a9848a0696e3f66912c3,
+        type: 3}
+      propertyPath: zombieSpawnTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5422369192506495923, guid: f41c8c26f1a1a9848a0696e3f66912c3,
         type: 3}
       propertyPath: m_Name

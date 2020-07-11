@@ -591,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 7766252896628029553, guid: 16cf23b9a62c79948a2370ace0e43e24,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7766252896628029553, guid: 16cf23b9a62c79948a2370ace0e43e24,
         type: 3}
@@ -995,6 +995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1703721522}
   - component: {fileID: 1703721521}
+  - component: {fileID: 1703721523}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1071,6 +1072,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0.9, y: 39.2}
   m_SizeDelta: {x: 12.452322, y: 3.8710651}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1703721523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703721520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33694199803d8ed47a99397581ef9eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  delayAmount: 0
+  fruitImage: {fileID: 0}
+  fruitCanGrow: 0
 --- !u!1 &1819942108
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,25 +35,6 @@ public class PlantGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-/*        timer += Time.deltaTime;
-        if (timer >= delayAmount)
-        {
-            timer = 0f;
-            if (isItDay)
-            {
-                NightStart();
-            }
-            else
-            {
-                DayStart();
-            }
-        }*/
-
-        if (isItDay)
-        {
-            //DayUpdate();
-        }
-
      foreach(Leaf l in leaves)
         {
             if(l.photosynthesisHappening == true)
