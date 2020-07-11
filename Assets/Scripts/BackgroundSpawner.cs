@@ -28,6 +28,11 @@ public class BackgroundSpawner : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+
+    }
+
     void OnTriggerExit2D(Collider2D collision)
     {
      int type = Random.Range(0, 3);
@@ -50,7 +55,7 @@ public class BackgroundSpawner : MonoBehaviour
                 currentType = "cold";
             }
         timer += Time.deltaTime;
-        if(timer <= zombieSpawnTime)
+        if (timer <= zombieSpawnTime)
         {
             spawnZombie();
         }

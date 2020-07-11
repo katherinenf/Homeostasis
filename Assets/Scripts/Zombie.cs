@@ -11,6 +11,7 @@ public class Zombie : MonoBehaviour
     public Vector2 speed;
     public Rigidbody2D rb;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,5 +43,6 @@ public class Zombie : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = currentSprite;
         }
     }
+
 
 }

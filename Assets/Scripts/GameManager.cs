@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
                 timer = 0f;
                 distance++;
                 distanceText.text = distance.ToString();
-                response = null;
+                //response = null;
             }
             //checks if stimulus matches response and decrements health if not
             if (stimulus != response && stimulus != "default")
