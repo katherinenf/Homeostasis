@@ -13,6 +13,7 @@ public class BackgroundSpawner : MonoBehaviour
     public Zombie zombiePrefab;
     public float timer;
     public float zombieSpawnTime;
+    public float speedIncrease;
 
     // The next x position that an background will spawn at
     float spawnNextX;
@@ -30,7 +31,7 @@ public class BackgroundSpawner : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -41,23 +42,26 @@ public class BackgroundSpawner : MonoBehaviour
                 GameObject newThing = Instantiate(defaultPrefab, new Vector3(spawnNextX + offset, transform.position.y, transform.position.z), transform.rotation);
                 newThing.transform.SetSiblingIndex(0);
                 Sicken();
+                SpeedUp();
             }
             if (type == 1)
             {
                 GameObject newThing = Instantiate(hotPrefab, new Vector3(spawnNextX + offset, transform.position.y, transform.position.z), transform.rotation);
                 newThing.transform.SetSiblingIndex(0);
                 currentType = "hot";
-            }
-             if(type == 2)
+                SpeedUp();
+        }
+        if (type == 2)
             {
                 GameObject newThing = Instantiate(coldPrefab, new Vector3(spawnNextX + offset, transform.position.y, transform.position.z), transform.rotation);
                 newThing.transform.SetSiblingIndex(0);
                 currentType = "cold";
-            }
+                SpeedUp();
+        }
         timer += Time.deltaTime;
         if (timer <= zombieSpawnTime)
         {
-            spawnZombie();
+            //spawnZombie();
         }
     }
 
@@ -82,5 +86,11 @@ public class BackgroundSpawner : MonoBehaviour
         zombie.transform.position = new Vector3(-10, -1, 0);
     }
 
+    void SpeedUp()
+    {
+        hotPrefab.GetComponent<BackgroundScroller>().speed.x -= speedIncrease ;
+        coldPrefab.GetComponent<BackgroundScroller>().speed.x -= speedIncrease;
+        defaultPrefab.GetComponent<BackgroundScroller>().speed.x -= speedIncrease;
+    }
 
 }

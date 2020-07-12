@@ -98,13 +98,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite1: {fileID: 21300000, guid: 22e621970b9cfe74b82225a123a1e0dc, type: 3}
   sprite2: {fileID: 21300000, guid: 29f0990593063c741b6b72dc47ac4729, type: 3}
+  jumpSprite: {fileID: 21300000, guid: da1891b662a059e40a59c21247c3d571, type: 3}
   spawner: {fileID: 0}
   GM: {fileID: 0}
   timer: 0
   delayAmount: 1
   health: 10
   rb: {fileID: 7875711143113242962}
-  jumpForce: 10
+  jumpHeight: {x: 0, y: 0}
+  jumpImpulse: 0
+  gravity: 0
+  floorY: 0
 --- !u!50 &7875711143113242962
 Rigidbody2D:
   serializedVersion: 4

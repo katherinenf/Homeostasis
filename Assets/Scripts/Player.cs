@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public Sprite sprite1;
     public Sprite sprite2;
+    public Sprite jumpSprite;
     public BackgroundSpawner spawner;
     public GameManager GM;
     public float timer;
@@ -29,6 +30,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         Sprite currentSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+        if (transform.position.y != floorY)
+        {
+            currentSprite = jumpSprite;
+            gameObject.GetComponent<SpriteRenderer>().sprite = currentSprite;
+        }
         timer += Time.deltaTime;
         if (timer >= delayAmount)
         {
@@ -53,7 +59,8 @@ public class Player : MonoBehaviour
         {
             velocityY = 0;
             transform.position = new Vector2(transform.position.x, floorY);
-        }       
+        }   
+
     }
 
 
