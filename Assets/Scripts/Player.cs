@@ -66,11 +66,19 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        GM.stimulus = spawner.currentType;
+        if (collider.gameObject.GetComponent<BackgroundScroller>())
+        {
+            GM.stimulus = spawner.currentType;
+            GM.response = null;
+        }
         if (collider.gameObject.GetComponent<Zombie>())
         {
-            GM.health -= 10;
-            velocityY = jumpImpulse;
+            if(GM.health > 0)
+            {
+                GM.health -= 10;
+                velocityY = jumpImpulse;
+            }
+
         }
     }
 

@@ -61,7 +61,7 @@ public class BackgroundSpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (timer <= zombieSpawnTime)
         {
-            //spawnZombie();
+            spawnZombie();
         }
     }
 

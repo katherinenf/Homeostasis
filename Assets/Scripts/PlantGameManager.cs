@@ -73,4 +73,9 @@ public class PlantGameManager : MonoBehaviour
         isItDay = true;
     }
 
+    public void ToMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
+    }
+
 }

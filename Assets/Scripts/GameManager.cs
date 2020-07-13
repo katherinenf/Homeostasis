@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public Text healthText;
     public int healthLossPerSecond;
     public Player player;
+    public GameObject lossPanel;
     
 
     // Start is called before the first frame update
@@ -41,7 +42,6 @@ public class GameManager : MonoBehaviour
                 timer = 0f;
                 distance++;
                 distanceText.text = distance.ToString();
-                //response = null;
             }
             //checks if stimulus matches response and decrements health if not
             if (stimulus != response && stimulus != "default")
@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour
                 stimulusText.text = null;
             }
             playerUpdate();
+        }
+        else
+        {
+            lossPanel.SetActive(true);
         }
     }
 
@@ -101,6 +105,11 @@ public class GameManager : MonoBehaviour
     public void HeartClick()
     {
         stimulus = "hot";
+    }
+
+    public void ToMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
     }
 
 
